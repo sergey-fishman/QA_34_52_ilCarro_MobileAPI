@@ -10,7 +10,7 @@ public class UserFactory {
         return User.builder()
                 .firstName(faker.name().firstName())
                 .lastName(faker.name().lastName())
-                .email(faker.internet().emailAddress())
+                .username(faker.internet().emailAddress())
                 .password("Qwerty1234!")
                 .build();
     }
