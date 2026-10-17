@@ -3,11 +3,10 @@ package controllers;
 import dto.*;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
 import utils.BaseApi;
 import utils.PropertiesReader;
-
-import java.awt.print.Book;
 
 import static io.restassured.RestAssured.given;
 
@@ -31,13 +30,37 @@ public class CarController implements BaseApi {
     }
 
     public Response addNewCar(Car car) {
-        return given()
-                .log().body()
+        return addNewCar(car, tokenDto.getAccessToken());
+    }
+
+    public Response addNewCar(Car car, String token) {
+        RequestSpecification request = given()
+                .log().all()
                 .body(car)
-                .contentType(ContentType.JSON)
-                .header(AUTH, tokenDto.getAccessToken())
+                .contentType(ContentType.JSON);
+
+        if (token != null) {
+            request.header(AUTH, token);
+        }
+
+        return request
                 .when()
                 .post(BASE_URL + CARS_URL)
+                .then()
+                .log().status()
+                .log().body()
+                .extract()
+                .response();
+    }
+
+    public Response addNewCarWithMethodAndContentType(Car car, String method, ContentType contentType) {
+        return given()
+                .log().all()
+                .body(car)
+                .contentType(contentType)
+                .header(AUTH, tokenDto.getAccessToken())
+                .when()
+                .request(method, BASE_URL + CARS_URL)
                 .then()
                 .log().status()
                 .log().body()
@@ -77,7 +100,7 @@ public class CarController implements BaseApi {
                 .log().all()
                 .header(AUTH, tokenDto.getAccessToken())
                 .when()
-                .delete(BASE_URL+CARS_URL+"/"+serialNumber)
+                .delete(BASE_URL + CARS_URL + "/" + serialNumber)
                 .then()
                 .log().status()
                 .log().body()
@@ -91,7 +114,7 @@ public class CarController implements BaseApi {
                 .body(searchDto)
                 .contentType(ContentType.JSON)
                 .when()
-                .post(BASE_URL+CARS_SEARCH_URL)
+                .post(BASE_URL + CARS_SEARCH_URL)
                 .then()
                 .log().status()
                 .log().body()

@@ -9,7 +9,6 @@ import utils.BaseApi;
 import static io.restassured.RestAssured.given;
 
 public class AuthController implements BaseApi {
-    public User[] userArray;
 
     public Response registrationLogin(User user, String url) {
         return given()
