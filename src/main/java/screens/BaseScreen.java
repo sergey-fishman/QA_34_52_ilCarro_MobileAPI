@@ -2,6 +2,7 @@ package screens;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,24 +19,22 @@ public class BaseScreen {
         PageFactory.initElements(new AppiumFieldDecorator
                 (driver, Duration.ofSeconds(20)), this);
     }
+
     public boolean isTextInElementPresent(WebElement element, String text) {
         try {
             return new WebDriverWait(driver, Duration.ofSeconds(5))
                     .until(ExpectedConditions.textToBePresentInElement(element, text));
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-            System.out.println("created exception");
+        } catch (TimeoutException e) {
+            return false;
         }
-        return false;
     }
 
     public void clickWait(WebElement element) {
         try {
             new WebDriverWait(driver, Duration.ofSeconds(5))
                     .until(ExpectedConditions.elementToBeClickable(element)).click();
-        } catch (RuntimeException e) {
-            e.printStackTrace();
-            System.out.println("created exception");
+        } catch (TimeoutException e){
+            throw new AssertionError("Element is not clickable within 5 sec: " + element, e);
         }
     }
 }

@@ -10,21 +10,27 @@ public class SearchScreen extends BaseScreen {
     }
 
     @AndroidFindBy(xpath = "//android.widget.ImageView[@content-desc='More options']")
-    WebElement btnDots;
+    WebElement actionMenu;
     @AndroidFindBy(xpath = "//*[@resource-id='com.telran.ilcarro:id/title' and @text='Login']")
-    WebElement btnLogin;
+    WebElement linkLogin;
     @AndroidFindBy(xpath = "//*[@resource-id='com.telran.ilcarro:id/title' and @text='Registration']")
-    WebElement btnRegistration;
+    WebElement linkRegistration;
+    @AndroidFindBy(id = "com.telran.ilcarro:id/findTitle")
+    WebElement title;
 
-    public void clickBtnDots(){
-        clickWait(btnDots);
+    public void clickActionMenu(){
+        clickWait(actionMenu);
     }
 
-    public void clickBtnLogin(){
-        clickWait(btnLogin);
+    public void clickLinkLogin(){
+        clickWait(linkLogin);
     }
 
-    public void clickBtnRegistration(){
-        clickWait(btnRegistration);
+    public void clickLinkRegistration(){
+        clickWait(linkRegistration);
+    }
+
+    public boolean validateTextInTitlePresent(String text) {
+        return isTextInElementPresent(title, text);
     }
 }

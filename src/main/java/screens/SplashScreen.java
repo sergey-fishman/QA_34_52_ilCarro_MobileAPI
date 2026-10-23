@@ -23,13 +23,13 @@ public class SplashScreen extends BaseScreen {
         return isTextInElementPresent(versionApp, text);
     }
 
-    public void goToSearchScreen() {
+    public void waitForSearchScreen() {
         try {
             new WebDriverWait(driver, Duration.ofSeconds(10)).until
                     (ExpectedConditions.presenceOfElementLocated
                             (By.id("com.telran.ilcarro:id/findTitle")));
         } catch (TimeoutException e){
-            System.out.println(e.getMessage());
+            throw new AssertionError("Search screen did not open within 10 sec", e);
         }
     }
 }
