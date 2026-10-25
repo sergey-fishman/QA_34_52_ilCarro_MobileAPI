@@ -15,8 +15,13 @@ public class SearchScreen extends BaseScreen {
     WebElement linkLogin;
     @AndroidFindBy(xpath = "//*[@resource-id='com.telran.ilcarro:id/title' and @text='Registration']")
     WebElement linkRegistration;
-    @AndroidFindBy(id = "com.telran.ilcarro:id/findTitle")
-    WebElement title;
+    @AndroidFindBy(xpath = "//android.widget.Toast[@text=\"Registration success!\"]")
+    WebElement successMessage;
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.telran.ilcarro:id/title\" and @text=\"Logout\"]")
+    WebElement linkLogout;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.telran.ilcarro:id/title\" and @text=\"My Cars\"]")
+    WebElement linkMyCars;
 
     public void clickActionMenu(){
         clickWait(actionMenu);
@@ -26,11 +31,19 @@ public class SearchScreen extends BaseScreen {
         clickWait(linkLogin);
     }
 
+    public void clickLinkLogout() {
+        clickWait(linkLogout);
+    }
+
+    public void clickLinkMyCars(){
+        clickWait(linkMyCars);
+    }
+
     public void clickLinkRegistration(){
         clickWait(linkRegistration);
     }
 
-    public boolean validateTextInTitlePresent(String text) {
-        return isTextInElementPresent(title, text);
+    public boolean validateTextSuccessMessagePresent(String text) {
+        return isTextInElementPresent(successMessage, text);
     }
 }
