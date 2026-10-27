@@ -28,7 +28,7 @@ public class LoginScreen extends BaseScreen{
         loginBtn.click();
     }
 
-    public boolean validateTextLoginSuccess(String text) {
+    public boolean validateTextLoginSuccessMessagePresent(String text) {
         return isTextInElementPresent(successMessage, text);
     }
 }

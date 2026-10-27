@@ -16,7 +16,9 @@ public class SearchScreen extends BaseScreen {
     @AndroidFindBy(xpath = "//*[@resource-id='com.telran.ilcarro:id/title' and @text='Registration']")
     WebElement linkRegistration;
     @AndroidFindBy(xpath = "//android.widget.Toast[@text=\"Registration success!\"]")
-    WebElement successMessage;
+    WebElement registrationSuccessMessage;
+    @AndroidFindBy(xpath = "//android.widget.Toast[@text=\"Login success!\"]")
+    WebElement loginSuccessMessage;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id=\"com.telran.ilcarro:id/title\" and @text=\"Logout\"]")
     WebElement linkLogout;
@@ -44,6 +46,10 @@ public class SearchScreen extends BaseScreen {
     }
 
     public boolean validateTextSuccessMessagePresent(String text) {
-        return isTextInElementPresent(successMessage, text);
+        return isTextInElementPresent(registrationSuccessMessage, text);
+    }
+
+    public boolean validateTextLoginSuccessMessagePresent(String text) {
+        return isTextInElementPresent(loginSuccessMessage, text);
     }
 }

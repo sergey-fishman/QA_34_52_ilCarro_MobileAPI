@@ -20,5 +20,5 @@ public class AppiumConfig {
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
-    };
+    }
 }

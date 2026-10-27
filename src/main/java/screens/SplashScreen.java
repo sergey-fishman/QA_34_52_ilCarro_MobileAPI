@@ -25,11 +25,11 @@ public class SplashScreen extends BaseScreen {
 
     public void waitForSearchScreen() {
         try {
-            new WebDriverWait(driver, Duration.ofSeconds(10)).until
+            new WebDriverWait(driver, Duration.ofSeconds(15)).until
                     (ExpectedConditions.presenceOfElementLocated
                             (By.id("com.telran.ilcarro:id/findTitle")));
         } catch (TimeoutException e){
-            throw new AssertionError("Search screen did not open within 10 sec", e);
+            throw new AssertionError("Search screen did not open within 15 sec", e);
         }
     }
 }
