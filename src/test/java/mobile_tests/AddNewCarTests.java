@@ -37,9 +37,10 @@ public class AddNewCarTests extends TestBase {
     @Test
     public void addCarPositiveTest(){
         addNewCarScreen.typeAddCarForm(CarFactory.positiveCar());
-        addNewCarScreen.choseFuelType("Diesel");
+        addNewCarScreen.chooseFuelType("Diesel");
         addNewCarScreen.clickAddCarBtn();
         Assert.assertTrue(addNewCarScreen.validateSuccessMessage
-                ("Car was added!"));
+                ("Car was added!"),
+                "Message \"Car was added!\" is present");
     }
 }

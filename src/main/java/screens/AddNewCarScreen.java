@@ -54,7 +54,7 @@ public class AddNewCarScreen extends BaseScreen {
 
     }
 
-    public void choseFuelType(String fuel) {
+    public void chooseFuelType(String fuel) {
         inputFuel.click();
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.elementToBeClickable
